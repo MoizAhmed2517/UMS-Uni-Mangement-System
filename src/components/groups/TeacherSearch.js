@@ -1,7 +1,54 @@
-import { Box, Paper, Container, Grid } from '@mui/material';
+import { useState } from 'react';
+import { Box, Paper, Container, Grid, createFilterOptions, FormControl, InputLabel, Select } from '@mui/material';
 import React from 'react';
 import GridView from '../GridView';
 import PageNumber from '../PageNumber';
+import InputBase from '@mui/material/InputBase';
+import SearchIcon from '@mui/icons-material/Search';
+import { styled, alpha } from '@mui/material/styles';
+import TextField from '@mui/material/TextField';
+import MenuItem from '@mui/material/MenuItem';
+import { options } from '@fullcalendar/core/preact';
+
+const Search = styled('div')(({ theme }) => ({
+  position: 'relative',
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: '#fff',
+  '&:hover': {
+    backgroundColor: '#F7FAF8',
+  },
+  width: '20%',
+  [theme.breakpoints.up('sm')]: {
+    width: 'auto',
+  },
+}));
+
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: '100%',
+  position: 'absolute',
+  pointerEvents: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  color: '#153E52',
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+   color: 'inherit',
+  '& .MuiInputBase-input': {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: '12ch',
+      '&:focus': {
+        width: '20ch',
+      },
+    },
+  },
+}));
 
 function createData(name, skill, cgpa, dept, info) {
   return {name, skill, cgpa, dept, info};
@@ -23,7 +70,46 @@ const data = [
   createData( 'Ali Abbas', 'LOC Analyst', 3.94, 'Computer Sc.', 'He introduced me to the coding, and he is one of the reason why i like python so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
 ];
 
+const searchFields = [
+  {
+    value: 'name',
+    label: 'Name'
+  },
+  {
+    value: 'skill',
+    label: 'Skill'
+  },
+  {
+    value: 'dept',
+    label: 'Department'
+  }
+];
+
 const TeacherSearch = () => {
+
+  const [search, setSearch] = useState(data);
+  const [changeField, setChangeField] = useState('name');
+
+  const handleSearch = (e) => {
+    const filtername = e.target.value.toLowerCase();
+    if (changeField === 'dept') {
+      const searchedName = data.filter(items => items.dept.toLowerCase().includes(filtername));
+      setSearch(searchedName);
+    }
+    else if (changeField === 'skill') {
+      const searchedName = data.filter(items => items.skill.toLowerCase().includes(filtername));
+      setSearch(searchedName);
+    }
+    else {
+      const searchedName = data.filter(items => items.name.toLowerCase().includes(filtername));
+      setSearch(searchedName);
+    }
+  }
+
+  const handleChange = (event) => {
+    setChangeField(event.target.value);
+  };
+
   return (
     <Box>
       <Container maxWidth="lg" 
@@ -32,14 +118,48 @@ const TeacherSearch = () => {
           }}
         >
 
-        <Paper sx={{ padding: '5px', borderRadius: '10px', height: '40px' }}>
+        <Paper sx={{ padding: '5px', borderRadius: '10px', height: '40px'}} elevation={4}>
+          <Grid container spacing={1}>
+
+            <Grid item xs={8}>
+              <Search>
+                <SearchIconWrapper>
+                  <SearchIcon />
+                </SearchIconWrapper>
+                <StyledInputBase
+                  placeholder='Search...'
+                  inputProps={{ 'aria-label': 'search' }}
+                  onChange={handleSearch}
+                />
+              </Search>
+            </Grid>
+
+            <Grid item xs={4}>
+              <FormControl fullWidth sx={{ paddingTop: '2px'}}>
+                <InputLabel id="fieldSelectSearch" sx={{ marginLeft: '-3px' ,paddingTop: '3px'}}>Search</InputLabel>
+                <Select
+                  labelId="fieldSelectSearch"
+                  id="field-Select-Search"
+                  value={changeField}
+                  label="Name"
+                  onChange={handleChange}
+                  sx={{ height: '36px', borderRadius: '10px'}}
+                >
+                  <MenuItem value='name' sx={{ color: '#153E52' }}>Name</MenuItem>
+                  <MenuItem value='skill'>Skills</MenuItem>
+                  <MenuItem value='dept'>Department</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+
+          </Grid>
         </Paper>
 
         <Grid container spacing={2} marginTop={1}>
           {
-            data.map((item, index) => (
+            search.map((item, index) => (
               <Grid item xs={4} key={index}>
-                <GridView studentName={item.name} studentSkill={item.skill} studentCGPA ={item.cgpa} studentDept={item.dept} studentInfo={limitString(item.info, 140)} />
+                <GridView studentName={item.name} studentSkill={item.skill} studentCGPA={item.cgpa} studentDept={item.dept} studentInfo={limitString(item.info, 140)} />
               </Grid>
             ))
           }
