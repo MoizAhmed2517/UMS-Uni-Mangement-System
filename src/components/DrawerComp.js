@@ -1,8 +1,30 @@
 import React, { useState } from 'react';
 import { Drawer, List, ListItemButton, ListItemIcon, ListItemText, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import { NavLink } from 'react-router-dom';
 
-const PAGES = ["Home", "Notifications", "Students", "Teachers", "Recruiters", "Login", "Logout"];
+const PAGES = [
+    {
+      path: '/',
+      label: 'Profile'
+    },
+    {
+      path: '/Teachers',
+      label: 'Teachers'
+    },
+    {
+      path: '/Students',
+      label: 'Students'
+    },
+    {
+      path: '/Recruiter',
+      label: 'Recruiters'
+    },
+    // {
+    //   path: '/',
+    //   label: 'Notification'
+    // },
+  ];
 
 const DrawerComp = () => {
   const [toggleSideBar, setToggleSideBar] = useState(false);
@@ -26,7 +48,11 @@ const DrawerComp = () => {
                     PAGES.map((page, index) => (
                         <ListItemButton key={index} onClick={drawerHandler}>
                             <ListItemIcon>
-                                <ListItemText>{page}</ListItemText>
+                                <ListItemText>
+                                    <NavLink to={page.path} key={index} style={{ textDecoration: 'none'}}>
+                                        {page.label}
+                                    </NavLink>
+                                </ListItemText>
                             </ListItemIcon>
                         </ListItemButton>
                     ))

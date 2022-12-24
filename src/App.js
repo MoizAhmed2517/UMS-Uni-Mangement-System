@@ -1,16 +1,13 @@
 import React from "react";
-import Teacher from "./components/groups/Teacher";
-import TeacherSearch from "./components/groups/TeacherSearch";
-import Nav from "./components/Nav";
+import { BrowserRouter } from 'react-router-dom';
+import AppRoutes from "./components/AppRoutes";
 
 
 function App() {
   return (
-    <React.Fragment>
-      <Nav />
-      {/* <Teacher /> */}
-      <TeacherSearch />
-    </React.Fragment>
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
   );
 }
 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Box, Paper, Container, Grid, createFilterOptions, FormControl, InputLabel, Select } from '@mui/material';
 import React from 'react';
 import GridView from '../GridView';
@@ -9,6 +9,7 @@ import { styled, alpha } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import { options } from '@fullcalendar/core/preact';
+import axios from 'axios';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -68,6 +69,11 @@ const data = [
   createData( 'Hafiz Muhammad Ali', 'React', 3.32, 'Software Eng.', 'He introduced me to the coding, and he is one of the reason why i like javascript so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
   createData( 'Waleed Hussain', 'MLOPs', 3.94, 'Software Eng.', 'He introduced me to the coding, and he is one of the reason why i like react so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
   createData( 'Ali Abbas', 'LOC Analyst', 3.94, 'Computer Sc.', 'He introduced me to the coding, and he is one of the reason why i like python so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
+  createData( 'Ali Abbas', 'LOC Analyst', 3.94, 'Computer Sc.', 'He introduced me to the coding, and he is one of the reason why i like python so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
+  createData( 'Ali Ahmed', 'LOC Analyst', 3.94, 'Computer Sc.', 'He introduced me to the coding, and he is one of the reason why i like python so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
+  createData( 'Ali Abbas', 'LOC Analyst', 3.94, 'Computer Sc.', 'He introduced me to the coding, and he is one of the reason why i like python so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
+  createData( 'Ali Abbas', 'LOC Analyst', 3.94, 'Computer Sc.', 'He introduced me to the coding, and he is one of the reason why i like python so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
+  createData( 'Ali Abbas', 'LOC Analyst', 3.94, 'Computer Sc.', 'He introduced me to the coding, and he is one of the reason why i like python so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
 ];
 
 const searchFields = [
@@ -87,8 +93,29 @@ const searchFields = [
 
 const TeacherSearch = () => {
 
+  // useEffect(() => {
+  //   axios.get('http://18.183.141.57/management/teacher-list/')
+  //     .then( res => {
+  //       console.log(res)
+  //     })
+  //     .catch( err => {
+  //       console.log(err)
+  //     })
+  // }, []) 
+
   const [search, setSearch] = useState(data);
   const [changeField, setChangeField] = useState('name');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postPerPage, setPostPerPage] = useState(9);
+
+  const lastPostIndex = currentPage * postPerPage;
+  const firstPostIndex = lastPostIndex - postPerPage
+  const currentPosts = data.slice(firstPostIndex, lastPostIndex);
+  const totalPost = Math.ceil(data.length/postPerPage);
+
+  const handleCurrentPageDisplay = (e, p) => {
+    setCurrentPage(p);
+  }
 
   const handleSearch = (e) => {
     const filtername = e.target.value.toLowerCase();
@@ -130,6 +157,7 @@ const TeacherSearch = () => {
                   placeholder='Search...'
                   inputProps={{ 'aria-label': 'search' }}
                   onChange={handleSearch}
+                  fullWidth
                 />
               </Search>
             </Grid>
@@ -156,18 +184,25 @@ const TeacherSearch = () => {
         </Paper>
 
         <Grid container spacing={2} marginTop={1}>
-          {
-            search.map((item, index) => (
-              <Grid item xs={4} key={index}>
-                <GridView studentName={item.name} studentSkill={item.skill} studentCGPA={item.cgpa} studentDept={item.dept} studentInfo={limitString(item.info, 140)} />
-              </Grid>
-            ))
-          }
+            { search.length === data.length ? (
+                currentPosts.map((item, index) => (
+                  <Grid item xs={4} key={index}>
+                    <GridView studentName={item.name} studentSkill={item.skill} studentCGPA={item.cgpa} studentDept={item.dept} studentInfo={limitString(item.info, 140)} />
+                  </Grid>
+                ))
+              ) : (
+                search.map((item, index) => (
+                  <Grid item xs={4} key={index}>
+                    <GridView studentName={item.name} studentSkill={item.skill} studentCGPA={item.cgpa} studentDept={item.dept} studentInfo={limitString(item.info, 140)} />
+                  </Grid>
+                ))
+              )
+            }
         </Grid>
 
         <Grid container spacing={2} marginTop={1}>
           <Grid item xs={12} sx={{ display:'flex', justifyContent: 'right'}}>
-            <PageNumber />
+            <PageNumber handleCurrentPage={handleCurrentPageDisplay} totalPostCount={totalPost}/>
           </Grid>
         </Grid>
         

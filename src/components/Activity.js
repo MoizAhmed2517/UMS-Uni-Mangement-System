@@ -27,7 +27,9 @@ const events = [
   createData('Event at Sir Syed Uni', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', '30 November 2022'),
   createData('Sports Day', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', '30 January 2022'),
   createData('Exhibition', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', '30 June 2022'),
-]
+];
+
+
 
 const Activity = () => {
 

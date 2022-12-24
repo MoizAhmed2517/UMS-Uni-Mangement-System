@@ -1,16 +1,40 @@
 import React, {useState} from 'react';
 import { AppBar, Typography, Toolbar, Tabs, Tab, useMediaQuery, useTheme} from '@mui/material';
 import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
-import { Button } from '@mui/material';
-import DrawerComp from './DrawerComp';
+import { Avatar } from '@mui/material';
+import DrawerComp from '../DrawerComp';
+import { NavLink } from 'react-router-dom';
 
 function Nav() {
 
-  const PAGES = ["Profile", "Notifications", "Students", "Teachers", "Recruiters"];
+  const PAGES = [
+    {
+      path: '/',
+      label: 'Profile'
+    },
+    {
+      path: '/Teachers',
+      label: 'Teachers'
+    },
+    {
+      path: '/Students',
+      label: 'Students'
+    },
+    {
+      path: '/Recruiter',
+      label: 'Recruiters'
+    },
+    {
+      path: '/AboutUs',
+      label: 'About Us'
+    },
+  ];
+
   const [tabColor, setTabColor] = useState(0);
 
   const tabColorHandler = (e,value) => {
     setTabColor(value);
+    console.log(value);
   }
 
   const theme = useTheme();
@@ -33,20 +57,20 @@ function Nav() {
                 LOGO
               </Typography>
               <Tabs 
-                sx={{ marginLeft: "auto" }} 
-                textColor="inherit" 
+                sx={{ marginLeft: "auto", textColor: "#fff", textDecoration: 'none' }} 
+                textColor= 'inherit'
                 value={tabColor} 
                 onChange={tabColorHandler} 
                 TabIndicatorProps={{ style: { background: "#F39223" } 
               }}>
                 {
                   PAGES.map((page, index) => (
-                    <Tab key={index} label={page} />
+                    <Tab key={index} label={page.label} to={page.path} component={NavLink} />
                   ))
                 }
               </Tabs>
 
-              <Button
+              <Avatar
                   sx={{marginLeft: "auto", 
                   color:'#F39223', 
                   borderColor: 
@@ -57,7 +81,7 @@ function Nav() {
                   variant="outlined"
                 >
                   <AccountCircleSharpIcon />
-              </Button>
+              </Avatar>
             </>
           )
         }
