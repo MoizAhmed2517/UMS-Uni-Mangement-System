@@ -131,17 +131,19 @@ const TeacherSearch = () => {
     data.push(createData(fullNameList[i], designation[i], field[i], descr[i]));
   }
 
-  console.log(data)
+  // console.log(data)
   
   const [search, setSearch] = useState(data);
   const [changeField, setChangeField] = useState('name');
   const [currentPage, setCurrentPage] = useState(1);
-  const [postPerPage, setPostPerPage] = useState(9);
+  const [postPerPage, setPostPerPage] = useState(3);
 
   const lastPostIndex = currentPage * postPerPage;
   const firstPostIndex = lastPostIndex - postPerPage
   const currentPosts = data.slice(firstPostIndex, lastPostIndex);
   const totalPost = Math.ceil(data.length/postPerPage);
+
+  console.log(currentPosts);
 
   const handleCurrentPageDisplay = (e, p) => {
     setCurrentPage(p);
@@ -204,8 +206,8 @@ const TeacherSearch = () => {
                   sx={{ height: '36px', borderRadius: '10px'}}
                 >
                   <MenuItem value='name' sx={{ color: '#153E52' }}>Name</MenuItem>
-                  <MenuItem value='skill'>Skills</MenuItem>
-                  <MenuItem value='dept'>Department</MenuItem>
+                  <MenuItem value='field'>Field</MenuItem>
+                  <MenuItem value='dept'>Designation</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
@@ -214,19 +216,12 @@ const TeacherSearch = () => {
         </Paper>
 
         <Grid container spacing={2} marginTop={1}>
-            { search.length === data.length ? (
+            { 
                 currentPosts.map((item, index) => (
                   <Grid item xs={4} key={index}>
                     <GridView TeacherFName={item.name} TeacherField={item.field} TeacherDesignation={item.designation} TeacherInfo={limitString(item.descr, 140)} />
                   </Grid>
                 ))
-              ) : (
-                search.map((item, index) => (
-                  <Grid item xs={4} key={index}>  
-                    <GridView TeacherFName={item.name} TeacherField={item.field} TeacherDesignation={item.designation} TeacherInfo={limitString(item.descr, 140)} />
-                  </Grid>
-                ))
-              )
             }
         </Grid>
 

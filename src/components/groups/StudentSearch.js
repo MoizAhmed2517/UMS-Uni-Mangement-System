@@ -94,27 +94,6 @@ const searchFields = [
 const StudentSearch = () => {
 
     const [response, setResponse] = useState([]);
-
-    useEffect(() => {
-      async function fetchData() {
-        const res = await axios.get('http://18.183.141.57/management/teacher-list/');
-        setResponse(res.data);
-      }
-      fetchData();
-    }, [])
-    
-    let fullName = '';
-    let fullNameList = [];
-    let field = [];
-  
-    response.map((data) => {
-      fullName = data.first_name + ' ' +  data.last_name;
-      fullNameList.push(fullName);
-      field.push(data.Field);
-    })
-  
-    console.log(fullNameList);
-    console.log(field);
     
     const [search, setSearch] = useState(dummydata);
     const [changeField, setChangeField] = useState('name');

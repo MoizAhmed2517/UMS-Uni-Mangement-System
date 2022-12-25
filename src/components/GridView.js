@@ -23,7 +23,7 @@ const GridView = (props) => {
                             <Typography variant='subtitle2' sx={{ color: '#153E52', paddingTop: '3px'}}>{props.TeacherField}</Typography>
                         </Stack>
                         <Stack direction='row' spacing={1} marginTop="2px">
-                            <Typography variant='p' sx={{ fontSize: '14px', color: '#153E52', paddingTop: '1.5px'}}> {props.TeacherDesignation}</Typography>
+                            <Typography variant='p' sx={{ fontSize: '14px', color: '#153E52', paddingTop: '1.5px'}}>{props.TeacherDesignation}</Typography>
                             {/* <Typography variant='p' sx={{ fontSize: '14px', color: '#153E52'}}>|</Typography>
                             <Typography variant='p' sx={{ fontSize: '14px', color: '#153E52', paddingTop: '1.5px', fontStyle: 'italic'}}>{props.studentDept}</Typography> */}
                         </Stack>
