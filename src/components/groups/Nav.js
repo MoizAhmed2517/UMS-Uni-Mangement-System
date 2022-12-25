@@ -13,11 +13,11 @@ function Nav() {
       label: 'Profile'
     },
     {
-      path: '/Teachers',
+      path: '/Teachers-search',
       label: 'Teachers'
     },
     {
-      path: '/Students',
+      path: '/Students-search',
       label: 'Students'
     },
     {
@@ -34,7 +34,7 @@ function Nav() {
 
   const tabColorHandler = (e,value) => {
     setTabColor(value);
-    console.log(value);
+    // console.log(value);
   }
 
   const theme = useTheme();

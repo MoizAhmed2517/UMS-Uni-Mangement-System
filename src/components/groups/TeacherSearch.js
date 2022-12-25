@@ -51,30 +51,34 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-function createData(name, skill, cgpa, dept, info) {
-  return {name, skill, cgpa, dept, info};
+// function createData(name, skill, cgpa, dept, info) {
+//   return {name, skill, cgpa, dept, info};
+// }
+
+function createData(name, designation, field, descr) {
+  return {name, designation, field, descr};
 }
 
 function limitString(string='', limiter=0){
   return string.substring(0, limiter);
 }
 
-const data = [
-  createData( 'Ammar Ali', 'Data Analyst', 3.94, 'Software Eng.', 'He introduced me to the coding, and he is one of the reason why i like C/C++ so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
-  createData( 'Harris Ali', 'Data Analyst', 3.31, 'Computer Sc.', 'He introduced me to the coding, and he is one of the reason why i like R so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
-  createData( 'Hafiz Muhammad Ali', 'React', 3.32, 'Software Eng.', 'He introduced me to the coding, and he is one of the reason why i like Php so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
-  createData( 'Waleed Hussain', 'MLOPs', 3.94, 'Software Eng.', 'He introduced me to the coding, and he is one of the reason why i like flutter so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
-  createData( 'Ali Abbas', 'LOC Analyst', 3.94, 'Computer Sc.', 'He introduced me to the coding, and he is one of the reason why i like Carbon so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
-  createData( 'Ammar Ahmed', 'React', 3.94, 'Software Eng.', 'He introduced me to the coding, and he is one of the reason why i like Ruby so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
-  createData( 'Hafiz Muhammad Ali', 'React', 3.32, 'Software Eng.', 'He introduced me to the coding, and he is one of the reason why i like javascript so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
-  createData( 'Waleed Hussain', 'MLOPs', 3.94, 'Software Eng.', 'He introduced me to the coding, and he is one of the reason why i like react so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
-  createData( 'Ali Abbas', 'LOC Analyst', 3.94, 'Computer Sc.', 'He introduced me to the coding, and he is one of the reason why i like python so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
-  createData( 'Ali Abbas', 'LOC Analyst', 3.94, 'Computer Sc.', 'He introduced me to the coding, and he is one of the reason why i like python so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
-  createData( 'Ali Ahmed', 'LOC Analyst', 3.94, 'Computer Sc.', 'He introduced me to the coding, and he is one of the reason why i like python so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
-  createData( 'Ali Abbas', 'LOC Analyst', 3.94, 'Computer Sc.', 'He introduced me to the coding, and he is one of the reason why i like python so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
-  createData( 'Ali Abbas', 'LOC Analyst', 3.94, 'Computer Sc.', 'He introduced me to the coding, and he is one of the reason why i like python so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
-  createData( 'Ali Abbas', 'LOC Analyst', 3.94, 'Computer Sc.', 'He introduced me to the coding, and he is one of the reason why i like python so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
-];
+// const dummydata = [
+//   createData( 'Ammar Ali', 'Data Analyst', 3.94, 'Software Eng.', 'He introduced me to the coding, and he is one of the reason why i like C/C++ so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
+//   createData( 'Harris Ali', 'Data Analyst', 3.31, 'Computer Sc.', 'He introduced me to the coding, and he is one of the reason why i like R so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
+//   createData( 'Hafiz Muhammad Ali', 'React', 3.32, 'Software Eng.', 'He introduced me to the coding, and he is one of the reason why i like Php so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
+//   createData( 'Waleed Hussain', 'MLOPs', 3.94, 'Software Eng.', 'He introduced me to the coding, and he is one of the reason why i like flutter so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
+//   createData( 'Ali Abbas', 'LOC Analyst', 3.94, 'Computer Sc.', 'He introduced me to the coding, and he is one of the reason why i like Carbon so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
+//   createData( 'Ammar Ahmed', 'React', 3.94, 'Software Eng.', 'He introduced me to the coding, and he is one of the reason why i like Ruby so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
+//   createData( 'Hafiz Muhammad Ali', 'React', 3.32, 'Software Eng.', 'He introduced me to the coding, and he is one of the reason why i like javascript so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
+//   createData( 'Waleed Hussain', 'MLOPs', 3.94, 'Software Eng.', 'He introduced me to the coding, and he is one of the reason why i like react so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
+//   createData( 'Ali Abbas', 'LOC Analyst', 3.94, 'Computer Sc.', 'He introduced me to the coding, and he is one of the reason why i like python so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
+//   createData( 'Ali Abbas', 'LOC Analyst', 3.94, 'Computer Sc.', 'He introduced me to the coding, and he is one of the reason why i like python so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
+//   createData( 'Ali Ahmed', 'LOC Analyst', 3.94, 'Computer Sc.', 'He introduced me to the coding, and he is one of the reason why i like python so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
+//   createData( 'Ali Abbas', 'LOC Analyst', 3.94, 'Computer Sc.', 'He introduced me to the coding, and he is one of the reason why i like python so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
+//   createData( 'Ali Abbas', 'LOC Analyst', 3.94, 'Computer Sc.', 'He introduced me to the coding, and he is one of the reason why i like python so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
+//   createData( 'Ali Abbas', 'LOC Analyst', 3.94, 'Computer Sc.', 'He introduced me to the coding, and he is one of the reason why i like python so much. His teaching always motivates student to think outside. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
+// ];
 
 const searchFields = [
   {
@@ -82,27 +86,53 @@ const searchFields = [
     label: 'Name'
   },
   {
-    value: 'skill',
-    label: 'Skill'
+    value: 'field',
+    label: 'Field'
   },
   {
-    value: 'dept',
-    label: 'Department'
+    value: 'desg',
+    label: 'Designation'
   }
 ];
 
+
+
 const TeacherSearch = () => {
 
-  // useEffect(() => {
-  //   axios.get('http://18.183.141.57/management/teacher-list/')
-  //     .then( res => {
-  //       console.log(res)
-  //     })
-  //     .catch( err => {
-  //       console.log(err)
-  //     })
-  // }, []) 
+  const [response, setResponse] = useState([]);
 
+  useEffect(() => {
+    async function fetchData() {
+      const res = await axios.get('http://18.183.141.57/management/teacher-list/');
+      setResponse(res.data);
+    }
+    fetchData();
+  }, [])
+  
+  let fullNameList = [];
+  let field = [];
+  let designation = [];
+  let descr = [];
+  let data = [];
+
+  response.map((data) => {
+    let fullName = data.first_name + ' ' +  data.last_name;
+    fullNameList.push(fullName);
+    field.push(data.Field);
+    data['experience'].map((items) => {
+      designation.push(items.position);
+    });
+    data['department'].map((items) => {
+      descr.push(items.description);
+    });
+  });
+
+  for (let i=0; i<descr.length; i++) {
+    data.push(createData(fullNameList[i], designation[i], field[i], descr[i]));
+  }
+
+  console.log(data)
+  
   const [search, setSearch] = useState(data);
   const [changeField, setChangeField] = useState('name');
   const [currentPage, setCurrentPage] = useState(1);
@@ -119,12 +149,12 @@ const TeacherSearch = () => {
 
   const handleSearch = (e) => {
     const filtername = e.target.value.toLowerCase();
-    if (changeField === 'dept') {
-      const searchedName = data.filter(items => items.dept.toLowerCase().includes(filtername));
+    if (changeField === 'desg') {
+      const searchedName = data.filter(items => items.designation.toLowerCase().includes(filtername));
       setSearch(searchedName);
     }
     else if (changeField === 'skill') {
-      const searchedName = data.filter(items => items.skill.toLowerCase().includes(filtername));
+      const searchedName = data.filter(items => items.field.toLowerCase().includes(filtername));
       setSearch(searchedName);
     }
     else {
@@ -187,13 +217,13 @@ const TeacherSearch = () => {
             { search.length === data.length ? (
                 currentPosts.map((item, index) => (
                   <Grid item xs={4} key={index}>
-                    <GridView studentName={item.name} studentSkill={item.skill} studentCGPA={item.cgpa} studentDept={item.dept} studentInfo={limitString(item.info, 140)} />
+                    <GridView TeacherFName={item.name} TeacherField={item.field} TeacherDesignation={item.designation} TeacherInfo={limitString(item.descr, 140)} />
                   </Grid>
                 ))
               ) : (
                 search.map((item, index) => (
-                  <Grid item xs={4} key={index}>
-                    <GridView studentName={item.name} studentSkill={item.skill} studentCGPA={item.cgpa} studentDept={item.dept} studentInfo={limitString(item.info, 140)} />
+                  <Grid item xs={4} key={index}>  
+                    <GridView TeacherFName={item.name} TeacherField={item.field} TeacherDesignation={item.designation} TeacherInfo={limitString(item.descr, 140)} />
                   </Grid>
                 ))
               )

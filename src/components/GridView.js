@@ -18,16 +18,16 @@ const GridView = (props) => {
 
                     <Grid item xs={10}>
                         <Stack direction='row' spacing={1}>
-                            <Typography variant='title' sx={{ fontWeight: 'bold', color: '#153E52', paddingTop: '1.5px'}}>{props.studentName}</Typography>
+                            <Typography variant='title' sx={{ fontWeight: 'bold', color: '#153E52', paddingTop: '1.5px'}}>{props.TeacherFName}</Typography>
                             <Typography variant='title' sx={{ color: '#153E52'}}>|</Typography>
-                            <Typography variant='subtitle2' sx={{ color: '#153E52', paddingTop: '3px'}}>{props.studentSkill}</Typography>
+                            <Typography variant='subtitle2' sx={{ color: '#153E52', paddingTop: '3px'}}>{props.TeacherField}</Typography>
                         </Stack>
                         <Stack direction='row' spacing={1} marginTop="2px">
-                            <Typography variant='p' sx={{ fontSize: '14px', color: '#153E52', paddingTop: '1.5px'}}>CGPA: {props.studentCGPA}</Typography>
-                            <Typography variant='p' sx={{ fontSize: '14px', color: '#153E52'}}>|</Typography>
-                            <Typography variant='p' sx={{ fontSize: '14px', color: '#153E52', paddingTop: '1.5px', fontStyle: 'italic'}}>{props.studentDept}</Typography>
+                            <Typography variant='p' sx={{ fontSize: '14px', color: '#153E52', paddingTop: '1.5px'}}> {props.TeacherDesignation}</Typography>
+                            {/* <Typography variant='p' sx={{ fontSize: '14px', color: '#153E52'}}>|</Typography>
+                            <Typography variant='p' sx={{ fontSize: '14px', color: '#153E52', paddingTop: '1.5px', fontStyle: 'italic'}}>{props.studentDept}</Typography> */}
                         </Stack>
-                        <Typography variant='p' sx={{ fontSize: '14px', paddingTop: '1.5px'}}>{props.studentInfo}</Typography>
+                        <Typography variant='p' sx={{ fontSize: '14px', paddingTop: '1.5px'}}>{props.TeacherInfo}</Typography>
                         <Typography variant='p' sx={{ fontSize: '14px', color: '#153E52', paddingTop: '1.5px', fontStyle: 'italic', textalign: 'justify'}} display='inline'>.....more</Typography>
                     </Grid>
                 </Grid>

@@ -81,23 +81,22 @@ const JobsAccordion = () => {
             <Grid item xs={12}>
                 {
                     postedJobs.map((items, index) => (
-                    <React.Fragment key={index}>
                         <Accordion>
                             <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel1bh-content"
-                            id="panel1bh-header"
+                            keys={index}
+                            // aria-controls="panel1bh-content"
+                            // id="panel1bh-header"
                             >
                                 <Typography variant="title" sx={{ width: '40%', flexShrink: 0, color: '#153E52'  }}>{items.JobTitle}</Typography>
                                 <Typography  variant="subtitle2"  sx={{ color: 'text.secondary', width: '40%', flexShrink: 0  }}>{items.Requirements}</Typography>
                                 <Typography variant="subtitle2" sx={{ color: 'text.secondary' }}>Min. CGPA: {items.CGPA}</Typography>
                             </AccordionSummary>
 
-                            <AccordionDetails>
+                            <AccordionDetails keys={index}>
                                 <Typography variant='p'>{items.JobDescription}</Typography>
                             </AccordionDetails>
                         </Accordion>
-                    </React.Fragment>
                     ))
                 }
             </Grid>

@@ -6,6 +6,7 @@ import StudentsProfile from "../components/groups/StudentsProfile";
 import RecruiterProfile from "../components/groups/RecruiterProfile";
 import Nav from './groups/Nav';
 import AboutUs from './groups/AboutUs';
+import StudentSearch from './groups/StudentSearch';
 
 const AppRoutes = () => {
   return (
@@ -13,10 +14,11 @@ const AppRoutes = () => {
       <Nav />
       <Routes>
         <Route path='/' element={<Teacher />}/>
-        <Route path='/Teachers' element={<TeacherSearch />}/>
+        <Route path='/Teachers-search' element={<TeacherSearch />}/>
         <Route path='/Students' element={<StudentsProfile />}/>
         <Route path='/Recruiter' element={<RecruiterProfile />}/>
         <Route path='/AboutUs' element={<AboutUs />}/>
+        <Route path='/Students-search' element={<StudentSearch />}/>
       </Routes>
     </React.Fragment>
   )
