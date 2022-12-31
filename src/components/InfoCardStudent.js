@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import { Box, Paper, Typography, Stack, Grid, Button } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
-import Image from './static/images/banner/1.png';
+import Image from '../static/images/banner/1.png';
 import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 import { styled } from '@mui/material';
 import StoreOutlinedIcon from '@mui/icons-material/StoreOutlined';
-import TeacherModel from './components/TeacherModel';
+import TeacherModel from './TeacherModel';
 
 const StyledButton = styled(Button)(({ theme }) => ({
   borderRadius: 10,

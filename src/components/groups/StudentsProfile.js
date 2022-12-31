@@ -3,7 +3,7 @@ import { Box, Container, Grid, Stack } from "@mui/material";
 import Notification from "../Notification";
 // import Activity from "../Activity";
 // import CalendarFull from "../CalendarFull";
-import InfoCardStudent from '../../InfoCardStudent';
+import InfoCardStudent from '../InfoCardStudent';
 import Application from '../Application';
 import BarChartCGPA from '../Graphs/BarChartCGPA';
 
