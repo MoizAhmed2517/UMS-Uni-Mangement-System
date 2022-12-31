@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { AppBar, Typography, Toolbar, Tabs, Tab, useMediaQuery, useTheme} from '@mui/material';
 import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
 import { Avatar } from '@mui/material';
@@ -17,7 +17,7 @@ function Nav() {
       label: 'Teachers'
     },
     {
-      path: '/Students-search',
+      path: '/student-profile',
       label: 'Students'
     },
     {
@@ -30,16 +30,17 @@ function Nav() {
     },
   ];
 
-  const [tabColor, setTabColor] = useState(0);
-
+  const [tabColor, setTabColor] = useState(Number(localStorage.getItem('myValue')) || 0);
   const tabColorHandler = (e,value) => {
     setTabColor(value);
-    // console.log(value);
   }
+
+  useEffect(() => {
+    localStorage.setItem('myValue', String(tabColor))
+  }, [tabColor])
 
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down('md')); 
-
   return (
    <React.Fragment>
       <AppBar position='sticky' sx={{background: '#153E52'}}>

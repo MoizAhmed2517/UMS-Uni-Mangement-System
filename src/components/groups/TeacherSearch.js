@@ -51,10 +51,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-// function createData(name, skill, cgpa, dept, info) {
-//   return {name, skill, cgpa, dept, info};
-// }
-
 function createData(name, designation, field, descr) {
   return {name, designation, field, descr};
 }
@@ -99,55 +95,52 @@ const searchFields = [
 
 const TeacherSearch = () => {
 
-  const [response, setResponse] = useState([]);
+  const [data, setDataDisplay] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       const res = await axios.get('http://18.183.141.57/management/teacher-list/');
-      setResponse(res.data);
+      // setResponse(res.data);
+      let fullNameList = [];
+      let field = [];
+      let designation = [];
+      let descr = [];
+      let datamap = [];
+      res.data.map((data) => {
+        let fullName = data.first_name + ' ' +  data.last_name;
+        fullNameList.push(fullName);
+        field.push(data.Field);
+        data['experience'].map((items) => {
+          designation.push(items.position);
+        });
+        data['department'].map((items) => {
+          descr.push(items.description);
+        });
+      });
+
+      for (let i=0; i<descr.length; i++) {
+        datamap.push(createData(fullNameList[i], designation[i], field[i], descr[i]));
+      }
+
+      setDataDisplay(datamap);
     }
     fetchData();
   }, [])
   
-  let fullNameList = [];
-  let field = [];
-  let designation = [];
-  let descr = [];
-  let data = [];
-
-  response.map((data) => {
-    let fullName = data.first_name + ' ' +  data.last_name;
-    fullNameList.push(fullName);
-    field.push(data.Field);
-    data['experience'].map((items) => {
-      designation.push(items.position);
-    });
-    data['department'].map((items) => {
-      descr.push(items.description);
-    });
-  });
-
-  for (let i=0; i<descr.length; i++) {
-    data.push(createData(fullNameList[i], designation[i], field[i], descr[i]));
-  }
-
-  // console.log(data)
+  
   
   const [search, setSearch] = useState(data);
   const [changeField, setChangeField] = useState('name');
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postPerPage, setPostPerPage] = useState(3);
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [postPerPage, setPostPerPage] = useState(3);
+  // const lastPostIndex = currentPage * postPerPage;
+  // const firstPostIndex = lastPostIndex - postPerPage
+  // const currentPosts = data.slice(firstPostIndex, lastPostIndex);
+  // const totalPost = Math.ceil(data.length/postPerPage);
 
-  const lastPostIndex = currentPage * postPerPage;
-  const firstPostIndex = lastPostIndex - postPerPage
-  const currentPosts = data.slice(firstPostIndex, lastPostIndex);
-  const totalPost = Math.ceil(data.length/postPerPage);
-
-  console.log(currentPosts);
-
-  const handleCurrentPageDisplay = (e, p) => {
-    setCurrentPage(p);
-  }
+  // const handleCurrentPageDisplay = (e, p) => {
+  //   setCurrentPage(p);
+  // }
 
   const handleSearch = (e) => {
     const filtername = e.target.value.toLowerCase();
@@ -217,7 +210,7 @@ const TeacherSearch = () => {
 
         <Grid container spacing={2} marginTop={1}>
             { 
-                currentPosts.map((item, index) => (
+                search.map((item, index) => (
                   <Grid item xs={4} key={index}>
                     <GridView TeacherFName={item.name} TeacherField={item.field} TeacherDesignation={item.designation} TeacherInfo={limitString(item.descr, 140)} />
                   </Grid>
@@ -225,11 +218,11 @@ const TeacherSearch = () => {
             }
         </Grid>
 
-        <Grid container spacing={2} marginTop={1}>
+        {/* <Grid container spacing={2} marginTop={1}>
           <Grid item xs={12} sx={{ display:'flex', justifyContent: 'right'}}>
             <PageNumber handleCurrentPage={handleCurrentPageDisplay} totalPostCount={totalPost}/>
           </Grid>
-        </Grid>
+        </Grid> */}
         
       </Container>
     </Box> 

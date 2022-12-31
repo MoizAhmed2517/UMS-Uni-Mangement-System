@@ -13,9 +13,9 @@ const AppRoutes = () => {
     <React.Fragment>
       <Nav />
       <Routes>
-        <Route path='/' element={<Teacher />}/>
+        <Route exact path='/' element={<Teacher />}/>
         <Route path='/Teachers-search' element={<TeacherSearch />}/>
-        <Route path='/Students' element={<StudentsProfile />}/>
+        <Route path='/student-profile' element={<StudentsProfile />}/>
         <Route path='/Recruiter' element={<RecruiterProfile />}/>
         <Route path='/AboutUs' element={<AboutUs />}/>
         <Route path='/Students-search' element={<StudentSearch />}/>

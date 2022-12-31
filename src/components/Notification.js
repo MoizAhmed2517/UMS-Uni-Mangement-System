@@ -1,7 +1,7 @@
 import { Paper, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
 import React from 'react';
 import Table from '@mui/material/Table';
-import NewspaperIcon from '@mui/icons-material/Newspaper';
+import FeedRoundedIcon from '@mui/icons-material/FeedRounded';
 import { Stack } from '@mui/system';
 
 function createData(event, date) {
@@ -26,8 +26,8 @@ const Notification = () => {
             <TableRow>
               <TableCell>
                 <Stack direction='row' spacing={2}>
-                  <NewspaperIcon style={{ color: '#153E52', height: '25px', width: '25px'}} />
-                  <Typography color='#153E52'>Latest News and Events</Typography>
+                  <FeedRoundedIcon style={{ color: '#F39223', fontSize: 25}} />
+                  <Typography color='#F39223'>Latest News and Events</Typography>
                 </Stack>
               </TableCell>
             </TableRow>
