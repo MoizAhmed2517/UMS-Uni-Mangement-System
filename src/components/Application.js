@@ -7,27 +7,32 @@ import AssessmentIcon from '@mui/icons-material/Assessment';
 import SportsEsportsRoundedIcon from '@mui/icons-material/SportsEsportsRounded';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import { styled } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
 
 const icons = [
     {
         icon: <QuizIcon/>,
         tooltip: 'Improve Skills',
         styles: {fontSize: 30, filter: 'drop-shadow(1px 0px 5px rgba(0, 0, 0, 0.5))'},
+        path: '/Quiz-Overview'
     },
     {
         icon: <InsertDriveFileIcon/>,
         tooltip: 'Academic Records',
         styles: {fontSize: 30, filter: 'drop-shadow(1px 0px 5px rgba(0, 0, 0, 0.5))'},
+        path: '/Academic-Records'
     },
     {
         icon: <AssessmentIcon />,
         tooltip: 'Technical Records',
         styles: {fontSize: 30, filter: 'drop-shadow(1px 0px 5px rgba(0, 0, 0, 0.5))'},
+        path: '/Technical-Records'
     },
     {
         icon: <SportsEsportsRoundedIcon />,
         tooltip: 'Extra Activities',
         styles: {fontSize: 30, filter: 'drop-shadow(1px 0px 5px rgba(0, 0, 0, 0.5))'},
+        path: '/Extra-Activities'
     },
 ]
 
@@ -61,11 +66,11 @@ const Application = () => {
         </TableContainer>
         <Grid container spacing={2}>
             {
-                icons.map(( {icon, tooltip, styles} , index) => (
+                icons.map(( {icon, tooltip, styles, path} , index) => (
                     <Grid item xs={6} marginTop={1} key={index} marginBottom={1}>
                         <Stack direction='column'>
                             <LightTooltip title={tooltip}>
-                                <IconButton size='large' color='primary' style={{ color: '#153E52', height: 50, width: 50, marginLeft: 54 }}> 
+                                <IconButton size='large' color='primary' style={{ color: '#153E52', height: 50, width: 50, marginLeft: 54 }} component={Link} to={path}> 
                                     <Icon style={{filter: 'drop-shadow(1px 0px 5px rgba(0, 0, 0, 0.5))'}}>{icon}</Icon>
                                 </IconButton>
                             </LightTooltip>

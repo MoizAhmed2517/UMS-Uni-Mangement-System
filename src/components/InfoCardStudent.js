@@ -121,13 +121,10 @@ const InfoCardStudent = () => {
                     </React.Fragment>
                     ))
                   }
-
               </Box>
             </Grid>
-
           </Grid>
       </Box>
-
     </Paper>
   );
 }

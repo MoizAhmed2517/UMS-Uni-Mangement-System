@@ -1,15 +1,14 @@
 import React from 'react';
 import { ResponsiveLine } from '@nivo/line'
-import { Paper } from '@mui/material';
+import { Paper, Box, Stack, Button, Typography,  } from '@mui/material';
 
 const data = [
     {
       "id": "2019-2024",
-      "color": "blue",
       "data": [
         {
           "x": "Semester-1",
-          "y": 3.2
+          "y": 2.9
         },
         {
           "x": "Semester-2",
@@ -31,6 +30,10 @@ const data = [
           "x": "Semester-6",
           "y": 3.85
         },
+        {
+          "x": "Semester-7",
+          "y": 3.2
+        },
       ]
     }
   ];
@@ -38,11 +41,22 @@ const data = [
 
 const BarChartCGPA = () => {
   return (
-    <Paper sx={{padding: "5px", borderRadius: '10px', height: '350px'}} elevation={4}>
+    <Paper sx={{padding: "5px", borderRadius: '10px', height: '350px'}} elevation={8}>
+        <Box sx={{
+        marginLeft: 2.5,
+        marginTop: 1,
+      }}>
+        <Stack direction="row">
+          <Typography variant='h6' sx={{ fontWeight: 'bold' }}>Semester Wise CGPA</Typography>
+        </Stack>
+      </Box>
+
         <ResponsiveLine
-            curve="monotoneX"
+            colors={[ '#153E52' ]}
+            enableArea={true}
+            curve="step"
             data={data}
-            margin={{ top: 50, right: 100, bottom: 50, left: 60 }}
+            margin={{ top: 10, right: 45, bottom: 90, left: 60 }}
             xScale={{ type: 'point' }}
             yScale={{
                 type: 'linear',
@@ -61,7 +75,7 @@ const BarChartCGPA = () => {
                 tickRotation: 0,
                 legend: 'Semester',
                 legendOffset: 36,
-                legendPosition: 'middle'
+                legendPosition: 'middle',
             }}
             axisLeft={{
                 orient: 'left',
@@ -73,37 +87,37 @@ const BarChartCGPA = () => {
                 legendPosition: 'middle'
             }}
             pointSize={5}
-            pointColor="yellow"
-            pointBorderWidth={2}
+            pointColor="#F39223"
+            pointBorderWidth={1}
             pointBorderColor={{ from: 'serieColor' }}
             pointLabelYOffset={-12}
             useMesh={true}
-            legends={[
-                {
-                    anchor: 'bottom-right',
-                    direction: 'column',
-                    justify: false,
-                    translateX: 100,
-                    translateY: 0,
-                    itemsSpacing: 0,
-                    itemDirection: 'left-to-right',
-                    itemWidth: 80,
-                    itemHeight: 20,
-                    itemOpacity: 0.75,
-                    symbolSize: 12,
-                    symbolShape: 'circle',
-                    symbolBorderColor: 'rgba(0, 0, 0, .5)',
-                    effects: [
-                        {
-                            on: 'hover',
-                            style: {
-                                itemBackground: 'rgba(0, 0, 0, .03)',
-                                itemOpacity: 1
-                            }
-                        }
-                    ]
-                }
-            ]}
+            // legends={[
+            //     {
+            //         anchor: 'top-left',
+            //         direction: 'column',
+            //         justify: false,
+            //         translateX: 100,
+            //         translateY: 0,
+            //         itemsSpacing: 0,
+            //         itemDirection: 'left-to-right',
+            //         itemWidth: 80,
+            //         itemHeight: 20,
+            //         itemOpacity: 0.75,
+            //         symbolSize: 12,
+            //         symbolShape: 'circle',
+            //         symbolBorderColor: 'rgba(0, 0, 0, .5)',
+            //         effects: [
+            //             {
+            //                 on: 'hover',
+            //                 style: {
+            //                     itemBackground: 'rgba(0, 0, 0, .03)',
+            //                     itemOpacity: 1
+            //                 }
+            //             }
+            //         ]
+            //     }
+            // ]}
         />
   </Paper>
   )

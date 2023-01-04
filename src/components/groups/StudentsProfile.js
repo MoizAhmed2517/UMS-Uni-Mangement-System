@@ -6,6 +6,8 @@ import Notification from "../Notification";
 import InfoCardStudent from '../InfoCardStudent';
 import Application from '../Application';
 import BarChartCGPA from '../Graphs/BarChartCGPA';
+import PieChartstatus from '../Graphs/PieChartstatus';
+import TopSkillVisual from '../Graphs/TopSkillVisual';
 
 const StudentsProfile = () => {
   return (
@@ -20,6 +22,14 @@ const StudentsProfile = () => {
           <Stack direction="column" spacing={4}>
             <InfoCardStudent/>
             <BarChartCGPA />
+            <Stack direction="row"> 
+              <Grid item xs={6} sx={{ marginBottom: '10px' }}>
+                <PieChartstatus />
+              </Grid>
+              <Grid item xs={6} sx={{ marginLeft: '20px',marginBottom: '10px' }}>
+                <TopSkillVisual />
+              </Grid>
+            </Stack>
           </Stack>
         </Grid>
         <Grid item xs={4}>
