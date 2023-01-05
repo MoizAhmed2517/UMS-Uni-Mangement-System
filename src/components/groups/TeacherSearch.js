@@ -1,22 +1,20 @@
 import { useState, useEffect } from 'react';
-import { Box, Paper, Container, Grid, createFilterOptions, FormControl, InputLabel, Select } from '@mui/material';
+import { Box, Paper, Container, Grid, FormControl, InputLabel, Select } from '@mui/material';
 import React from 'react';
 import GridView from '../GridView';
-import PageNumber from '../PageNumber';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import { styled, alpha } from '@mui/material/styles';
-import TextField from '@mui/material/TextField';
+import { styled } from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';
-import { options } from '@fullcalendar/core/preact';
 import axios from 'axios';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
+  marginLeft: 'auto',
   backgroundColor: '#fff',
   '&:hover': {
-    backgroundColor: '#F7FAF8',
+    backgroundColor: 'rgba(21, 62, 82, 0.2)',
   },
   width: '20%',
   [theme.breakpoints.up('sm')]: {
@@ -37,6 +35,8 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
    color: 'inherit',
+   backgroundColor: 'rgba(21, 62, 82, 0.1)',
+   borderRadius: '10px',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
