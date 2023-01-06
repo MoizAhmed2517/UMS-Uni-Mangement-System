@@ -12,6 +12,7 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ImageIcon from '@mui/icons-material/Image';
 import LocalPoliceIcon from '@mui/icons-material/LocalPolice';
 import GppBadIcon from '@mui/icons-material/GppBad'; 
+import BadgeCounter from './BadgeCounter';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -134,7 +135,6 @@ const QuizOverview = () => {
 
             <Stack direction="row" sx={{ marginTop: '20px'}}>
                 <Box>
-
                     <List sx={{
                         width: '100%',
                         maxWidth: 580,
@@ -220,7 +220,7 @@ const QuizOverview = () => {
                     </List>
                 </Box>
 
-                <Box sx={{ marginLeft: 'auto'}}>Element2</Box> 
+                <BadgeCounter />
 
             </Stack>
 
