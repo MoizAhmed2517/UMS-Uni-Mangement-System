@@ -4,6 +4,7 @@ import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
 import { Avatar } from '@mui/material';
 import DrawerComp from '../DrawerComp';
 import { NavLink } from 'react-router-dom';
+import profilePic from '../../static/images/avatar/image.jpg';
 
 function Nav() {
 
@@ -71,7 +72,9 @@ function Nav() {
                 }
               </Tabs>
 
-              <Avatar
+              <Avatar alt="React" src={profilePic} sx={{marginLeft: "auto"}} />
+
+              {/* <Avatar
                   sx={{marginLeft: "auto", 
                   color:'#F39223', 
                   borderColor: 
@@ -82,7 +85,7 @@ function Nav() {
                   variant="outlined"
                 >
                   <AccountCircleSharpIcon />
-              </Avatar>
+              </Avatar> */}
             </>
           )
         }

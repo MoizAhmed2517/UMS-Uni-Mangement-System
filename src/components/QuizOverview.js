@@ -13,7 +13,8 @@ import ImageIcon from '@mui/icons-material/Image';
 import LocalPoliceIcon from '@mui/icons-material/LocalPolice';
 import GppBadIcon from '@mui/icons-material/GppBad'; 
 import BadgeCounter from './BadgeCounter';
-
+import { deepOrange, deepPurple } from '@mui/material/colors';
+import logo from '../static/images/avatar/React-icon.png';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -94,11 +95,11 @@ const QuizOverview = () => {
                 marginBottom: 1,
             }}>
                 <Stack direction="row">
-                <Typography variant='h6' sx={{ fontWeight: 'bold' }}>Skill Assessment</Typography>
+                    <Typography variant='h6' sx={{ fontWeight: 'bold' }}>Skill Assessment</Typography>
 
-                <Tooltip title="Check your skill level. Answer 15 multiple choice questions, score in the top 30%, and earn a skill badge.">
-                    <Icon sx={{ fontSize: 25, marginLeft: '4px', color: '#153E52'}}><HelpOutlineRoundedIcon /></Icon>
-                </Tooltip>
+                    <Tooltip title="Check your skill level. Answer 15 multiple choice questions, score in the top 30%, and earn a skill badge.">
+                        <Icon sx={{ fontSize: 25, marginLeft: '4px', color: '#153E52'}}><HelpOutlineRoundedIcon /></Icon>
+                    </Tooltip>
 
                 </Stack>
             </Box>
@@ -106,16 +107,17 @@ const QuizOverview = () => {
 
         <Paper sx={{
             marginTop: '20px',
-            borderRadius: '10pxpx',
+            borderRadius: '10px',
             p: '20px 20px 20px 20px',
             height: 'auto',
+            marginBottom: '6px',
         }}
-            elevation={8}
+            elevation={12}
         >
             
             <Stack direction="row"> 
                 <ButtonGroup variant="outlined" aria-label="outlined button group">
-                    <StyledButton variant="contained" selected={selected} defaultSelected>All</StyledButton>
+                    <StyledButton variant="contained" selected={selected}>All</StyledButton>
                     <StyledButton variant="contained">Recommended</StyledButton>
                     <StyledButton variant="contained">Industry Knowledge</StyledButton>
                     <StyledButton variant="contained">Tools & Technology</StyledButton>
@@ -142,9 +144,7 @@ const QuizOverview = () => {
                     }}>
                         <ListItem>
                             <ListItemAvatar>
-                                <Avatar>
-                                    <ImageIcon />
-                                </Avatar>
+                                <Avatar alt="React" src={logo} />
                             </ListItemAvatar>
                             <ListItemText primary={
                                 <React.Fragment>
@@ -160,7 +160,7 @@ const QuizOverview = () => {
                                 </React.Fragment>
                             } 
                             secondary={
-                                <React.Fragment>
+                                <div>
                                     <Stack direction="row">
                                         <Typography variant="subtitle2" sx={{ fontWeight: 'bold', color: '#F39223' }}>Time:</Typography>
                                         <Typography variant="subtitle2" sx={{ color: '#000', marginLeft: '3px' }}>15 mins</Typography>
@@ -171,51 +171,15 @@ const QuizOverview = () => {
                                         <Typography variant="subtitle2" sx={{ fontWeight: 'bold', color: '#F39223', marginLeft: '20px' }}>Passing:</Typography>
                                         <Typography variant="subtitle2" sx={{ color: '#000', marginLeft: '3px' }}>23%</Typography>
                                     </Stack>
-                                        <Typography variant="p">Decsription of each text will be display here. ONly 2 line short decription consit of ............................ </Typography>
-                                </React.Fragment>
+                                        <Typography variant="caption">Decsription of each text will be display here. ONly 2 line short decription consit of 182 charatcer will be display here............................ </Typography>
+                                </div>
                             } 
                             />
                         </ListItem>
                         <Divider variant="inset" component="li" />
 
 
-                        <ListItem>
-                            <ListItemAvatar>
-                                <Avatar>
-                                    <ImageIcon />
-                                </Avatar>
-                            </ListItemAvatar>
-                            <ListItemText primary={
-                                <React.Fragment>
-                                    <Stack direction="row">
-                                        <Typography variant="title" sx={{ fontWeight: 'bold', color: '#153E52' }}>React JS</Typography>
-                                        <Tooltip title={iconsVal} placement="right">
-                                            <Box sx={{ marginLeft: '5px', marginTop: '1px'}}>
-                                                    {iconsVal === "Badge" ? <LocalPoliceIcon sx={{ fontSize: 16, color: '#F39223'}}/> : <LocalPoliceIcon sx={{ fontSize: 16, color: "gray"}}/>}
-                                                    {iconsVal === "Retry" ? <GppBadIcon sx={{ fontSize: 16, color: 'red'}}/> : ""}                
-                                            </Box>
-                                        </Tooltip>
-                                    </Stack>
-                                </React.Fragment>
-                            } 
-                            secondary={
-                                <React.Fragment>
-                                    <Stack direction="row">
-                                        <Typography variant="subtitle2" sx={{ fontWeight: 'bold', color: '#F39223' }}>Time:</Typography>
-                                        <Typography variant="subtitle2" sx={{ color: '#000', marginLeft: '3px' }}>15 mins</Typography>
-                                        <Typography variant="subtitle2" sx={{ fontWeight: 'bold', color: '#F39223', marginLeft: '20px' }}>Total Questions:</Typography>
-                                        <Typography variant="subtitle2" sx={{ color: '#000', marginLeft: '3px' }}>15</Typography>
-                                        <Typography variant="subtitle2" sx={{ fontWeight: 'bold', color: '#F39223', marginLeft: '20px' }}>Level:</Typography>
-                                        <Typography variant="subtitle2" sx={{ color: '#000', marginLeft: '3px' }}>Advance</Typography>
-                                        <Typography variant="subtitle2" sx={{ fontWeight: 'bold', color: '#F39223', marginLeft: '20px' }}>Passing:</Typography>
-                                        <Typography variant="subtitle2" sx={{ color: '#000', marginLeft: '3px' }}>23%</Typography>
-                                    </Stack>
-                                        <Typography variant="p">Decsription of each text will be display here. ONly 2 line short decription consit of ............................ </Typography>
-                                </React.Fragment>
-                            } 
-                            />
-                        </ListItem>
-                        <Divider variant="inset" component="li" />
+                        
 
                     </List>
                 </Box>
