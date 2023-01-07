@@ -13,6 +13,7 @@ import TechnicalRecords from './TechnicalRecords';
 import ExtraActivities from './ExtraActivities';
 import Quiz from './Quiz';
 import QuizStart from './QuizStart';
+import QuizEnd from './QuizEnd';
 
 const AppRoutes = () => {
   return (
@@ -31,6 +32,7 @@ const AppRoutes = () => {
         <Route path='/Extra-Activities' element={<ExtraActivities />}/>
         <Route path='/Quiz-Start' element={<Quiz />}/>
         <Route path='/QuizStart' element={<QuizStart />}/>
+        <Route path='/QuizEnd' element={<QuizEnd />}/>
       </Routes>
     </React.Fragment>
   )
