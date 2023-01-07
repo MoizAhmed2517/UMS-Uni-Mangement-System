@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import { AppBar, Typography, Toolbar, Tabs, Tab, useMediaQuery, useTheme} from '@mui/material';
-import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
 import { Avatar } from '@mui/material';
 import DrawerComp from '../DrawerComp';
 import { NavLink } from 'react-router-dom';
@@ -73,19 +72,7 @@ function Nav() {
               </Tabs>
 
               <Avatar alt="React" src={profilePic} sx={{marginLeft: "auto"}} />
-
-              {/* <Avatar
-                  sx={{marginLeft: "auto", 
-                  color:'#F39223', 
-                  borderColor: 
-                  '#F39223', 
-                  '&:hover': { backgroundColor: '#F39223', color: '#fff'},  
-                  bordercolor: '#F39223',
-                }} 
-                  variant="outlined"
-                >
-                  <AccountCircleSharpIcon />
-              </Avatar> */}
+              
             </>
           )
         }

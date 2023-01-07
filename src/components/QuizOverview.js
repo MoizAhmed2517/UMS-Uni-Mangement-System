@@ -1,4 +1,4 @@
-import { Box, Typography, Paper, Stack, Tooltip, Icon, Grid, ButtonGroup, Button, Avatar, Divider } from '@mui/material';
+import { Box, Typography, Paper, Stack, Tooltip, Icon, ButtonGroup, Button, Avatar, Divider } from '@mui/material';
 import { Container} from '@mui/system';
 import React, { useState } from 'react';
 import HelpOutlineRoundedIcon from '@mui/icons-material/HelpOutlineRounded';
@@ -9,12 +9,11 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ImageIcon from '@mui/icons-material/Image';
 import LocalPoliceIcon from '@mui/icons-material/LocalPolice';
 import GppBadIcon from '@mui/icons-material/GppBad'; 
 import BadgeCounter from './BadgeCounter';
-import { deepOrange, deepPurple } from '@mui/material/colors';
 import logo from '../static/images/avatar/React-icon.png';
+import { Link } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -115,7 +114,8 @@ const QuizOverview = () => {
             elevation={12}
         >
             
-            <Stack direction="row"> 
+            <Stack direction="row">
+                
                 <ButtonGroup variant="outlined" aria-label="outlined button group">
                     <StyledButton variant="contained" selected={selected}>All</StyledButton>
                     <StyledButton variant="contained">Recommended</StyledButton>
@@ -149,7 +149,7 @@ const QuizOverview = () => {
                             <ListItemText primary={
                                 <React.Fragment>
                                     <Stack direction="row">
-                                        <Typography variant="title" sx={{ fontWeight: 'bold', color: '#153E52' }}>React JS</Typography>
+                                        <Typography variant="title" sx={{ fontWeight: 'bold', color: '#153E52' }} component={Link} to='/Quiz-Start'>React JS</Typography>
                                         <Tooltip title={iconsVal} placement="right">
                                             <Box sx={{ marginLeft: '5px', marginTop: '1px'}}>
                                                     {iconsVal === "Badge" ? <LocalPoliceIcon sx={{ fontSize: 16, color: '#F39223'}}/> : <LocalPoliceIcon sx={{ fontSize: 16, color: "gray"}}/>}
@@ -177,9 +177,6 @@ const QuizOverview = () => {
                             />
                         </ListItem>
                         <Divider variant="inset" component="li" />
-
-
-                        
 
                     </List>
                 </Box>
