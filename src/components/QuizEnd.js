@@ -1,15 +1,22 @@
 import React from 'react';
 import { Container} from '@mui/system';
-import { Box, Stack, Typography, Paper, Grid} from '@mui/material'
+import { Box, Stack, Typography, Paper, Grid, Button} from '@mui/material'
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import CongoConfetti from './CongoConfetti';
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
 import PieChartSummaryQuiz from './Graphs/PieChartSummaryQuiz';
+import { useNavigate } from 'react-router-dom';
 
-let score = 7;
+let score = 92;
 
 const QuizEnd = () => {
+
+  const navigate = useNavigate();
+
+  const handlehomeButton = () => {
+    navigate('/Quiz-Overview');
+  }
   return (
     <Container maxWidth="lg" sx={{ marginTop : '20px' }}>
 
@@ -107,9 +114,9 @@ const QuizEnd = () => {
                 <Grid item xs={6}>
                     <PieChartSummaryQuiz />
                 </Grid>
-                
             </Grid>
         </Box>
+        <Button variant="contained" sx={{ backgroundColor: '#153E52',  width: '100%', marginTop: '10px', '&:hover': { backgroundColor: '#102f3e' } }} onClick={handlehomeButton}>Take New Assessment</Button>
     </Container>
   )
 }
