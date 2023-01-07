@@ -4,30 +4,37 @@ import { Paper, Box, Stack, Typography } from '@mui/material';
 
 const data = [
     {
-      "id": "2020-2024",
+      "id": "2019-2024",
       "data": [
         {
-          "x": "2020-2021",
+          "x": "Semester-1",
           "y": 2.9
         },
         {
-          "x": "2021-2022",
+          "x": "Semester-2",
           "y": 3.3
         },
         {
-          "x": "2022-2023",
+          "x": "Semester-3",
           "y": 3.8
         },
         {
-          "x": "2023-2024",
-          "y": 3.7
+          "x": "Semester-4",
+          "y": 3.5
+        },
+        {
+          "x": "Semester-5",
+          "y": 3.76
+        },
+        {
+          "x": "Semester-6",
+          "y": 3.85
         }
       ]
     }
   ];
 
-
-const BarChartCGPA = () => {
+const BarChartGPA = () => {
   return (
     <Paper sx={{padding: "5px", borderRadius: '10px', height: '350px'}} elevation={8}>
         <Box sx={{
@@ -35,7 +42,7 @@ const BarChartCGPA = () => {
         marginTop: 1,
       }}>
         <Stack direction="row">
-          <Typography variant='h6' sx={{ fontWeight: 'bold' }}>Semester Wise CGPA</Typography>
+          <Typography variant='h6' sx={{ fontWeight: 'bold' }}>Semester Wise GPA</Typography>
         </Stack>
       </Box>
 
@@ -111,4 +118,4 @@ const BarChartCGPA = () => {
   )
 }
 
-export default BarChartCGPA
+export default BarChartGPA
