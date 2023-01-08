@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Paper, Box, Stack, Typography, Divider, Avatar, Grid } from '@mui/material';
+import { Paper, Box, Stack, Typography, Divider, Avatar, Button } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { styled } from '@mui/material/styles';
@@ -53,7 +53,7 @@ const Endorsment = () => {
             <Typography variant='h5' sx={{ fontWeight: 'bold' }}>Endorsement</Typography>
         </Box>
 
-        <Box sx={{ width: '100%', marginLeft: 2.5, paddingBottom: 2 }}>
+        <Box sx={{ width: '95%', marginLeft: 2.5, paddingBottom: 2, marginRight: 2 }}>
             <AntTabs 
                 value={value}
                 onChange={handleChange}
@@ -100,7 +100,8 @@ const Endorsment = () => {
 
         { value === 1 && (
                 <React.Fragment>
-                    <Box sx={{ marginLeft: -4 }}>
+                    <Box>
+                        <Button sx={{ width: '100%', marginTop: 2, backgroundColor: '#153E52', '&:hover': { backgroundColor: '#102f3e' } }} variant='contained'>Give Recommendations</Button>
                     {console.log(data.length)}
                     {/* {
                         data.map((item, index) => (
