@@ -8,15 +8,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import CreateIcon from '@mui/icons-material/Create';
 import ComputerIcon from '@mui/icons-material/Computer';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import { Link } from 'react-router-dom';
 
 function createData(title, link, descr, topSkill1, topSkill2, topSkill3 ) {
     return { title, link, descr, topSkill1, topSkill2, topSkill3 };
   }
   
 const rows = [
-    createData('Uni Management System', 'https://digiskills.pk/Default.aspx', 'The project is responsible for helping uni to manage overall student profile and make learning interactive', 'React', 'Django'),
+    createData('Uni Management System', 'https://digiskills.pk/Default.aspx', 'The project is responsible for helping uni to manage overall student profile and make learning interactive. The project is responsible for helping uni to manage overall student profile and make learning interactive', 'React', 'Django'),
     createData('Uni Management System2', 'https://www.youtube.com/', 'The project is responsible for helping uni to manage overall student profile and make learning interactive', 'React', 'Django', 'Javascript'),
     createData('Uni Management System3', 'https://digiskills.pk/Default.aspx', 'The project is responsible for helping uni to manage overall student profile and make learning interactive', 'React', 'Django'),
     createData('Uni Management System4', 'https://digiskills.pk/Default.aspx', 'The project is responsible for helping uni to manage overall student profile and make learning interactive', 'React', 'Django', 'Rest APIs'),
@@ -54,9 +52,8 @@ const Projects = () => {
                                     </IconButton>
                                 </Stack>
                                 <Stack direction="column">
-                                    <Typography variant="caption">{`Level: ${row.level}`} </Typography>
-                                    <Typography variant="caption">{`From: ${row.fromDate}`} {`To: ${row.toDate}`}</Typography>
-                                    <Typography variant="caption">{`Rating: ${row.rating}`}</Typography>
+                                    <Typography variant="caption" sx={{ color: '#000', fontStyle: 'italic' }}>{row.descr} </Typography>
+                                    <Typography variant="caption">{`Top Skill: ${row.topSkill1}`} {`- ${row.topSkill2}`} { typeof(row.topSkill3) === 'string' && `- ${row.topSkill3}`}</Typography>
                                 </Stack> 
                             </TableCell>
                         </TableRow>

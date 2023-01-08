@@ -6,6 +6,7 @@ import Skills from './Skills';
 import Experience from './Experience';
 import Freelancing from './Freelancing';
 import Projects from './Projects';
+import Certificates from './Certificates';
 
 const TechnicalRecords = () => {
   return (
@@ -25,6 +26,7 @@ const TechnicalRecords = () => {
               <Experience />
               <Freelancing />
               <Projects />
+              <Certificates />
             </Stack>
           </Grid>
           <Grid item xs={4}>
