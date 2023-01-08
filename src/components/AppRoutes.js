@@ -9,7 +9,7 @@ import AboutUs from './groups/AboutUs';
 import StudentSearch from './groups/StudentSearch';
 import QuizOverview from './QuizOverview';
 import AcademicRecords from './AcademicRecordsScreens/AcademicRecords';
-import TechnicalRecords from './TechnicalRecords';
+import TechnicalRecords from './TechnicalRecords/TechnicalRecords';
 import ExtraActivities from './extra-activities/ExtraActivities';
 import Quiz from './Quiz';
 import QuizStart from './QuizStart';
