@@ -8,6 +8,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import NoteIcon from '@mui/icons-material/Note';
 import VerifiedIcon from '@mui/icons-material/Verified';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 function createData(certificatename, date, platform, certificateID, expirationDate, verifyStatus) {
     return { certificatename, date, platform, certificateID, expirationDate, verifyStatus };
@@ -34,7 +35,7 @@ const Certificates = () => {
             window.open(link, '_blank');
         }
     }
-    
+
   return (
     <Paper sx={{ width: '100%', borderRadius: '10px' }} elevation={8}>
         <Box sx={{
@@ -44,9 +45,12 @@ const Certificates = () => {
         }}>
             <Stack direction="row" sx={{ marginLeft: 1.5, paddingTop: 1 }}>
                 <NoteIcon sx={{ fontSize: 23, color: '#fff' }}/>
-                <Typography variant='title' sx={{ fontWeight: 'bold', color: '#fff', marginLeft: '5px' }}>Expereince</Typography>
-                <IconButton sx={{ color: '#fff', marginLeft: 'auto', marginTop: '-9px', marginRight: '23px' }}>
+                <Typography variant='title' sx={{ fontWeight: 'bold', color: '#fff', marginLeft: '5px' }}>Certificate</Typography>
+                <IconButton sx={{ color: '#fff', marginLeft: 'auto', marginTop: '-9px', marginRight: '3px' }}>
                     <AddIcon />
+                </IconButton>
+                <IconButton sx={{ color: '#fff', marginTop: '-9px', marginRight: '23px' }}>
+                    <DeleteOutlineIcon />
                 </IconButton>
             </Stack>
         </Box>

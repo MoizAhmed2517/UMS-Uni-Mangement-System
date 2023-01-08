@@ -8,6 +8,7 @@ import Application from '../Application';
 import BarChartCGPA from '../Graphs/BarChartCGPA';
 import PieChartstatus from '../Graphs/PieChartstatus';
 import TopSkillVisual from '../Graphs/TopSkillVisual';
+import Endorsment from '../Endorsment';
 
 const StudentsProfile = () => {
   return (
@@ -30,6 +31,7 @@ const StudentsProfile = () => {
                 <TopSkillVisual />
               </Grid>
             </Stack>
+            <Endorsment />
           </Stack>
         </Grid>
         <Grid item xs={4}>
