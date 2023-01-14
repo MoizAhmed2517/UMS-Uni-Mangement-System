@@ -1,5 +1,5 @@
-import { Paper, Box, Stack, Typography, IconButton, Tooltip } from '@mui/material';
-import React from 'react';
+import { Paper, Box, Stack, Typography, IconButton, Tooltip, Icon } from '@mui/material';
+import { useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,6 +9,8 @@ import TableRow from '@mui/material/TableRow';
 import NoteIcon from '@mui/icons-material/Note';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import CertificateOCR from './CertificateOCR';
+
 
 function createData(certificatename, date, platform, certificateID, expirationDate, verifyStatus) {
     return { certificatename, date, platform, certificateID, expirationDate, verifyStatus };
@@ -22,19 +24,22 @@ const rows = [
 ];
 
 const Certificates = () => {
- 
-    const handleCertificateVerify = (lms, id, status) => {
-        let linkUdemyHeader = "http://ude.my/";
-        let linkCourseraHeader = "https://coursera.org/verify/";
 
-        if (lms.toLowerCase() === 'udemy' && status.toLowerCase() === 'yes') {
-            const link = linkUdemyHeader + id;
-            window.open(link, '_blank');
-        } else if (lms.toLowerCase() === 'coursera' && status.toLowerCase() === 'yes') {
-            const link = linkCourseraHeader + id;
-            window.open(link, '_blank');
-        }
+  const [open, setOpen] = useState(false);
+  const handleOpenModal = () => setOpen(true);
+  const handleCloseModal = () => setOpen(false);
+  const handleCertificateVerify = (lms, id, status) => {
+    let linkUdemyHeader = "http://ude.my/";
+    let linkCourseraHeader = "https://coursera.org/verify/";
+
+    if (lms.toLowerCase() === 'udemy' && status.toLowerCase() === 'yes') {
+        const link = linkUdemyHeader + id;
+        window.open(link, '_blank');
+    } else if (lms.toLowerCase() === 'coursera' && status.toLowerCase() === 'yes') {
+        const link = linkCourseraHeader + id;
+        window.open(link, '_blank');
     }
+  }
 
   return (
     <Paper sx={{ width: '100%', borderRadius: '10px' }} elevation={8}>
@@ -46,14 +51,20 @@ const Certificates = () => {
             <Stack direction="row" sx={{ marginLeft: 1.5, paddingTop: 1 }}>
                 <NoteIcon sx={{ fontSize: 23, color: '#fff' }}/>
                 <Typography variant='title' sx={{ fontWeight: 'bold', color: '#fff', marginLeft: '5px' }}>Certificate</Typography>
-                <IconButton sx={{ color: '#fff', marginLeft: 'auto', marginTop: '-9px', marginRight: '3px' }}>
-                    <AddIcon />
+                <IconButton sx={{ color: '#fff', marginLeft: 'auto', marginTop: '-9px', marginRight: '3px' }} onClick={handleOpenModal}>
+                    <Icon>
+                        <AddIcon />
+                    </Icon>
                 </IconButton>
                 <IconButton sx={{ color: '#fff', marginTop: '-9px', marginRight: '23px' }}>
                     <DeleteOutlineIcon />
                 </IconButton>
             </Stack>
         </Box>
+
+        {/* Modals -- START */}
+        <CertificateOCR openModal={open} handleClose={handleCloseModal} setOpenState={setOpen} />
+        {/* Modals -- END */}
 
         <TableContainer sx={{ maxHeight: 200, marginBottom: '5px'}}>
             <Table stickyHeader  size="small" aria-label="sticky table">
