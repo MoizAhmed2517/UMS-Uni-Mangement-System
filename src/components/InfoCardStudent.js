@@ -6,6 +6,17 @@ import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 import { styled } from '@mui/material';
 import StoreOutlinedIcon from '@mui/icons-material/StoreOutlined';
 import TeacherModel from './TeacherModel';
+import TechnicalRecords from './TechnicalRecords/TechnicalRecords';
+import { Link } from 'react-router-dom';
+import ModalStudent from './ModalStudent';
+
+function createData( name, descr, talks, pnum, location, org, year ) {
+  return { name, descr, talks, pnum, location, org, year };
+}
+
+const rows = [
+  createData('Waleed Hussain', 'FY-Student | React Developer | Emerging Talent seeking to be apper in Forbes 500 | Looking for Front-End Developer Position', 'machinelearning,advanceuiux,web3', '+92335XXXXXXX', 'Karachi,Sindh,Pakistan', '10Pearls', '2022'),
+];
 
 const StyledButton = styled(Button)(({ theme }) => ({
   borderRadius: 10,
@@ -25,9 +36,16 @@ const experience = [
 ]
 
 const InfoCardStudent = () => {
-  const [open, setOpen] = useState(false);
-  const handleOpenModal = () => setOpen(true);
-  const handleCloseModal = () => setOpen(false);
+
+  const [openEdit, setOpenEdit] = useState(false);
+  const [selectRow, setSelectedRow] = useState(rows);
+  // const [text, setText] = useState(0);
+  const handleOpenModalEdit = (row) => {
+    setOpenEdit(true);
+    setSelectedRow(row);
+  }
+  const handleCloseModalEdit = () => setOpenEdit(false);
+
   return (
     <Paper sx={{padding: "5px", borderRadius: '10px', height: '425px'}} elevation={6}>
       
@@ -63,10 +81,10 @@ const InfoCardStudent = () => {
               '&:hover': { backgroundColor: '#d9e6f2' },
               marginLeft: 'auto',
             }}>
-              <Button variant="text" onClick={handleOpenModal}>
+              <Button variant="text" onClick={() => handleOpenModalEdit(rows)}>
                 <CreateOutlinedIcon sx={{ height: 25, width: 25, color: '#153E52' }} />
               </Button>
-              <TeacherModel openModal={open} handleClose={handleCloseModal} setOpenState={setOpen} />
+              <ModalStudent openModal={openEdit} handleClose={handleCloseModalEdit} setOpenState={setOpenEdit} skill={selectRow} />
             </Avatar>
             
           </Stack>
@@ -77,18 +95,26 @@ const InfoCardStudent = () => {
               <Box sx={{
                 marginLeft: '15px',
               }}>
-                
-                <Stack direction='column'>
-                  <Typography variant='h5' sx={{ fontWeight: 'bold' }}>Harris Ali</Typography>
-                  <Typography variant='title' sx={{ color: 'gray' }}>Assistant Professor | Software Engineering | Sir Syed University | MUsic Lover</Typography>
-                  <Typography variant='title' sx={{ color: 'gray', fontSize: 13, marginTop: 1 }}>Talks about: #machinlearning, #artificialintelligence  </Typography>
-                  <Typography variant='p' sx={{ color: 'gray', fontSize: 12, marginTop: 1 }}>+92 335 XXX-XXXX</Typography>
-                  <Typography variant='p' sx={{ color: 'gray', fontSize: 12 }}>Karachi, Sindh, Pakistan</Typography>
-                </Stack>
+
+                {rows.map((row, index) => (
+                  <Stack direction='column' key={index}>
+                    <Typography variant='h5' sx={{ fontWeight: 'bold' }}>{row.name}</Typography>
+                    <Typography variant='title' sx={{ color: 'gray' }}>{row.descr}</Typography>
+                    <Typography variant='title' sx={{ color: 'gray', fontSize: 13, marginTop: 1 }}>
+                      {`Talks about: ${
+                      row.talks.split(",").slice(0, 3).map((talk) => (
+                        '#'+talk
+                      )).join(" ") }`
+                      }
+                    </Typography>
+                    <Typography variant='p' sx={{ color: 'gray', fontSize: 12, marginTop: 1 }}>{row.pnum}</Typography>
+                    <Typography variant='p' sx={{ color: 'gray', fontSize: 12 }}>{row.location}</Typography>
+                  </Stack>
+                ))
+                }
 
                 <Stack direction='row' spacing={1} marginTop='10px'>
-                  <StyledButton variant="outlined">Research</StyledButton>
-                  <StyledButton variant="outlined">Projects</StyledButton>
+                  <StyledButton variant="outlined" component={Link} to='/Technical-Records'>Projects</StyledButton>
                 </Stack>
 
               </Box>
@@ -100,7 +126,7 @@ const InfoCardStudent = () => {
                 }}>
 
                   {
-                    experience.map((text, index) => (
+                    rows.map((text, index) => (
                       <React.Fragment key={index}>
                         <Stack direction='row' spacing={2}  marginTop={2}>
                           <Avatar sx={{
@@ -110,11 +136,11 @@ const InfoCardStudent = () => {
                           }}>
                             <StoreOutlinedIcon/>
                           </Avatar>
-                          <Typography variant="title" >{text.org}</Typography>
+                          <Typography variant="title">{text.org}</Typography>
                         </Stack>
 
                         <Stack direction='row' spacing={2}>
-                          <Typography variant='p' sx={{ color: 'gray', fontSize: 12, marginTop: '-15px', marginLeft: '50px' }} >Working Since:
+                          <Typography variant='p' sx={{ color: 'gray', fontSize: 12, marginTop: '-15px', marginLeft: '53px' }} >Working Since:
                             <Typography variant='p' sx={{ color: '#153E52', fontSize: 12, marginTop: '-15px', marginLeft: '5px', textDecoration: 'underline'}}>{text.year}</Typography>
                           </Typography>
                       </Stack>

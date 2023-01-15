@@ -49,7 +49,7 @@ const Endorsment = () => {
         marginLeft: 2.5,
         marginTop: 1,
       }}>
-            <Typography variant='h5' sx={{ fontWeight: 'bold' }}>Endorsement</Typography>
+            <Typography variant='h6' sx={{ fontWeight: 'bold' }}>Endorsement</Typography>
         </Box>
 
         <Box sx={{ width: '95%', marginLeft: 2.5, paddingBottom: 2, marginRight: 2 }}>
@@ -67,7 +67,6 @@ const Endorsment = () => {
             { value === 0 && (
                 <React.Fragment>
                     <Box sx={{ marginLeft: -4 }}>
-                    {console.log(data.length)}
                     {
                         data.map((item, index) => (
                             <List key={index} sx={{ marginLeft: 3, marginRight: 2}}>
@@ -101,7 +100,6 @@ const Endorsment = () => {
                 <React.Fragment>
                     <Box>
                         <Button sx={{ width: '100%', marginTop: 2, backgroundColor: '#153E52', '&:hover': { backgroundColor: '#102f3e' } }} variant='contained'>Give Recommendations</Button>
-                    {console.log(data.length)}
                     {/* {
                         data.map((item, index) => (
                             <List key={index} sx={{ marginLeft: 3, marginRight: 2}}>
