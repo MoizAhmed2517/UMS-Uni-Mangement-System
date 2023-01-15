@@ -14,7 +14,6 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import Checkbox from '@mui/material/Checkbox';
-import { useEffect } from 'react';
 
 const style = {
     position: 'absolute',
@@ -37,14 +36,14 @@ const ModalExperience = (props) => {
     const [type, setType] = useState("");
     const [fromDate, setfromDate] = useState(new Date());
     const [check, setCheck] = useState(true);
-    const [toDate, setToDate] = useState(new Date());
+    const [toDate, setToDate] = useState("Present");
 
     function handleChange(event, setState) {
         setState(event.target.value);
     }
     
     const handleSubmitClose = () => {
-        if (!location || !position || !company) {
+        if (!location || !position || !company || !type) {
             alert("Please fill the empty field");
         } else {
             props.setOpenState(false);
@@ -57,22 +56,16 @@ const ModalExperience = (props) => {
 
     const handleCheck = (event) => {
         setCheck(event.target.checked);
+        if(check){
+            setToDate("Present");
+        }else {
+            setToDate(new Date());
+        }
     }
-
-    // const handleSetToDate = (newVal, check) => {
-    //     console.log(check)
-    //     if (check) {
-    //         console.log("Yes")
-    //     } else {
-    //         setToDate(newVal)
-    //     }
-    // }
 
     const handleSetFromDate = (newVal) => {
         setfromDate(newVal);
     }
-
-
     
     return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -132,7 +125,7 @@ const ModalExperience = (props) => {
                         <FormGroup>
                             <FormControlLabel 
                             control={
-                                <Checkbox checked={Boolean(check)} onChange={handleCheck} inputProps={{ 'aria-label': 'controlled' }} sx={{ color: '#153E52' }} />
+                                <Checkbox checked={check} onChange={handleCheck} inputProps={{ 'aria-label': 'controlled' }} sx={{ color: '#153E52' }} />
                             } 
                             label="I am currently working in this role" />
                         </FormGroup>
@@ -142,7 +135,7 @@ const ModalExperience = (props) => {
                 <Grid container spacing={2} marginTop={1} marginBottom={1}>
                     <Grid item xs={6}>
                         <DesktopDatePicker
-                            label="Ending Date"
+                            label="Starting Date"
                             inputFormat="MM/DD/YYYY"
                             value={fromDate}
                             onChange={handleSetFromDate}
@@ -156,10 +149,10 @@ const ModalExperience = (props) => {
                                 <DesktopDatePicker
                                     label="Ending Date"
                                     inputFormat="MM/DD/YYYY"
-                                    value={toDate}
-                                    onChange={setToDate}
+                                    value={toDate === "Present" ? "Present" : toDate}
+                                    onChange={toDate !== "Present" ? setToDate : () => {}}
                                     renderInput={(params) => <TextField {...params} />}
-                                    disabled
+                                    disabled={toDate === "Present"}
                                 />
                             ) : (
                                 <DesktopDatePicker
@@ -174,9 +167,6 @@ const ModalExperience = (props) => {
                         
                     </Grid>
                 </Grid>
-                {console.log(company)}
-                {console.log(position)}
-                {console.log(location)}
                 <Button
                     variant="contained" 
                     fullWidth 

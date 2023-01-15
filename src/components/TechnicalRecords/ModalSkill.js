@@ -4,6 +4,7 @@ import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import { Typography, Stack, Grid, Button, Avatar } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import { useState } from 'react';
 
 const style = {
     position: 'absolute',
@@ -20,8 +21,18 @@ const style = {
 
 const ModalSkill = (props) => {
 
+  const [skill, setSkill] = useState('');
+
   const handleSubmitClose = () => {
-    props.setOpenState(false);
+    if(!skill){
+      alert('Please fill the empty values');
+    } else {
+      props.setOpenState(false);
+    }
+  }
+
+  const handleSkill = (e) => {
+    setSkill(e.target.value);
   }
 
   return (
@@ -48,7 +59,7 @@ const ModalSkill = (props) => {
             
             <Grid container spacing={2} marginTop={1}>
                 <Grid item xs={12}>
-                    <TextField id="outlined-basic" label="Add New Skill" variant="outlined" fullWidth />
+                    <TextField id="outlined-basic" label="Add New Skill" variant="outlined" fullWidth value={skill} onChange={handleSkill}/>
                 </Grid>
             </Grid>
 
