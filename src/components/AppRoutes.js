@@ -14,27 +14,26 @@ import ExtraActivities from './extra-activities/ExtraActivities';
 import Quiz from './Quiz';
 import QuizStart from './QuizStart';
 import QuizEnd from './QuizEnd';
+import Login from './groups/Login';
 
 const AppRoutes = () => {
   return (
-    <React.Fragment>
-      <Nav />
       <Routes>
-        <Route exact path='/' element={<Teacher />}/>
-        <Route path='/Teachers-search' element={<TeacherSearch />}/>
-        <Route path='/student-profile' element={<StudentsProfile />}/>
-        <Route path='/Recruiter' element={<RecruiterProfile />}/>
-        <Route path='/AboutUs' element={<AboutUs />}/>
-        <Route path='/Students-search' element={<StudentSearch />}/>
-        <Route path='/Quiz-Overview' element={<QuizOverview />}/>
-        <Route path='/Academic-Records' element={<AcademicRecords />}/>
-        <Route path='/Technical-Records' element={<TechnicalRecords />}/>
-        <Route path='/Extra-Activities' element={<ExtraActivities />}/>
-        <Route path='/Quiz-Start' element={<Quiz />}/>
-        <Route path='/QuizStart' element={<QuizStart />}/>
-        <Route path='/QuizEnd' element={<QuizEnd />}/>
+        <Route exact path='/' element={<Login/>}/>
+        <Route exact path='/Teacher' element={<><Nav /><Teacher /></>}/>
+        <Route path='/Teachers-search' element={<><Nav /><TeacherSearch /></>}/>
+        <Route path='/student-profile' element={<><Nav /><StudentsProfile /></>}/>
+        <Route path='/Recruiter' element={<><Nav /><RecruiterProfile /></>}/>
+        <Route path='/AboutUs' element={<><Nav /><AboutUs /></>}/>
+        <Route path='/Students-search' element={<><Nav /><StudentSearch /></>}/>
+        <Route path='/Quiz-Overview' element={<><Nav /><QuizOverview /></>}/>
+        <Route path='/Academic-Records' element={<><Nav /><AcademicRecords /></>}/>
+        <Route path='/Technical-Records' element={<><Nav /><TechnicalRecords /></>}/>
+        <Route path='/Extra-Activities' element={<><Nav /><ExtraActivities /></>}/>
+        <Route path='/Quiz-Start' element={<><Nav /><Quiz /></>}/>
+        <Route path='/QuizStart' element={<><Nav /><QuizStart /></>}/>
+        <Route path='/QuizEnd' element={<><Nav /><QuizEnd /></>}/>
       </Routes>
-    </React.Fragment>
   )
 }
 
