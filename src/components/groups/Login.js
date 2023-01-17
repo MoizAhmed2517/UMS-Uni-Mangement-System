@@ -10,7 +10,7 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -20,10 +20,17 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import banner from '../../static/images/Logo/logo.jpg';
+import CircularProgress from '@mui/material/CircularProgress';
 
-function createData(email, password) {
-  return {email, password};
+function createData(id, userType, email, password) {
+  return {id, userType, email, password};
 }
+
+const dummyUsers = [
+  createData( 1, 'student', 'waleed.hussain@gmail.com', '123455'),
+  createData( 2, 'teacher','harris.ali@gmail.com', 'abcde'),
+  createData( 3, 'recruiter','Sadia.jamal@hotmail.com', 'qwerty'),
+];
 
 function Copyright(props) {
   return (
@@ -37,13 +44,14 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-const Login = () => {
+const Login = (props) => {
 
   const [credentials, setCredentials] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [user, setUser] = useState('student');
+  const [access, setAccess] = useState(false);
 
-  const handleChange = (event) => {
+  const handleChangeSelectUser = (event) => {
     setUser(event.target.value);
   };
 
@@ -58,15 +66,28 @@ const Login = () => {
     });
   };
 
-  console.log(user)
-
+  useEffect(() => {
+    if(credentials){
+      if (credentials.email.includes('@')){
+        dummyUsers.map((item, index) => {
+          if(item.email === credentials.email && item.password === credentials.password && user === item.userType){
+            console.log("Success Login")
+            setAccess(true)
+          }
+        })
+      } else {
+        alert("Please type email. Username not allowed")
+      }
+    }
+  }, [credentials])
+  
   return (
     <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={{ height: '100vh' }}>
+      <Grid container component="main" sx={{ height: '100vh'}}>
         <CssBaseline />
-        <Grid item xs={false} sm={4} md={7} sx={{
+        <Grid item xs={false} sm={false} md={7} sx={{
             backgroundImage: `url(${banner})`,
-            backgroundRepeat: 'no-repeat',
+            // backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
             backgroundSize: 'cover',
@@ -74,7 +95,7 @@ const Login = () => {
             height: '100vh',
           }}
         />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <Grid item xs={12} sm={12} md={5} component={Paper} elevation={8} square>
           <Box
             sx={{
               my: 8,
@@ -97,19 +118,20 @@ const Login = () => {
                 id="demo-simple-select-helper"
                 value={user}
                 label="Age"
-                onChange={handleChange}
+                onChange={handleChangeSelectUser}
                 fullWidth={true}
               >
-                <MenuItem value={'student'} >Student</MenuItem>
-                <MenuItem value={'teacher'} >Teacher</MenuItem>
-                <MenuItem value={'recruiter'} >Recruiter</MenuItem>
+                <MenuItem value='student'>Student</MenuItem>
+                <MenuItem value='teacher'>Teacher</MenuItem>
+                <MenuItem value='recruiter'>Recruiter</MenuItem>
               </Select>
             </FormControl>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1, width: '100%' }}>
               <TextField
                 margin="normal"
                 required
                 fullWidth
+                type='email'
                 id="email"
                 label="Email Address"
                 name="email"
@@ -155,7 +177,26 @@ const Login = () => {
                   </Link>
                 </Grid>
               </Grid>
-              <Copyright sx={{ mt: 5 }} />
+              {
+                access && (
+                  <>
+                    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '2px' }}>
+                        <CircularProgress  sx={{
+                            color: `${access ? 'green' : 'red'}`,
+                          }}
+                          size={40}
+                          thickness={4}
+                          {...props}
+                          value={100} 
+                        />
+                    </Box>
+                    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 2 }}>
+                          <Typography>Login successfully</Typography>
+                    </Box>
+                  </>
+                )
+              }
+              <Copyright sx={{ mt: 3 }} />
             </Box>
           </Box>
         </Grid>
