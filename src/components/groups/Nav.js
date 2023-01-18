@@ -6,7 +6,7 @@ import { NavLink, Link } from 'react-router-dom';
 import profilePic from '../../static/images/avatar/image.jpg';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { bounceIn } from 'react-animations';
-import banner from '../../static/images/Logo/logo.jpg';
+import banner from '../../static/images/Logo/logo.png';
 import { StyleSheet, css } from 'aphrodite';
 
 const styles = StyleSheet.create({
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 
 const settings = [
   {
-    path: '/Profile',
+    path: '/student-profile',
     label: 'Profile'
   },
   {
@@ -27,10 +27,10 @@ const settings = [
   }
 ];
 const PAGES = [
-  {
-    path: '/Teacher',
-    label: 'Profile'
-  },
+  // {
+  //   path: '/Teacher',
+  //   label: 'Profile'
+  // },
   {
     path: '/Teachers-search',
     label: 'Teachers'

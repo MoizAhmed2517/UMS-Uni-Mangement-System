@@ -21,6 +21,9 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import banner from '../../static/images/Logo/logo.jpg';
 import CircularProgress from '@mui/material/CircularProgress';
+import StudentsProfile from './StudentsProfile';
+import { useNavigate } from 'react-router';
+
 
 function createData(id, userType, email, password) {
   return {id, userType, email, password};
@@ -46,6 +49,8 @@ const theme = createTheme();
 
 const Login = (props) => {
 
+  const navigate = useNavigate();
+
   const [credentials, setCredentials] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [user, setUser] = useState('student');
@@ -69,7 +74,7 @@ const Login = (props) => {
   useEffect(() => {
     if(credentials){
       if (credentials.email.includes('@')){
-        dummyUsers.map((item, index) => {
+        dummyUsers.map((item) => {
           if(item.email === credentials.email && item.password === credentials.password && user === item.userType){
             console.log("Success Login")
             setAccess(true)
@@ -80,6 +85,25 @@ const Login = (props) => {
       }
     }
   }, [credentials])
+
+  // function UserNav(users, status) {
+  //   if (users === 'student' && status === true){
+  //     return (<StudentsProfile />,
+  //       console.log("happy")
+  //     )
+  //   }
+  // }
+
+  useEffect(() => {
+    console.log(user);
+    if (user === 'student' && access === true) {
+      navigate('/student-profile');
+    } else if (user === 'teacher' && access === true) {
+      navigate('/Teacher');
+    } else if (user === 'recruiter' && access === true){
+      navigate('/Recruiter');
+    }
+  }, [access, navigate, user]);
   
   return (
     <ThemeProvider theme={theme}>
