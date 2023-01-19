@@ -7,6 +7,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { styled } from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';
 import axios from 'axios';
+import PageNumber from '../PageNumber';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -95,7 +96,7 @@ const searchFields = [
 
 const TeacherSearch = () => {
 
-  const [data, setDataDisplay] = useState([]);
+  const [dataDisplay, setDataDisplay] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -126,37 +127,45 @@ const TeacherSearch = () => {
     }
     fetchData();
   }, [])
-  
-  
-  
-  const [search, setSearch] = useState(data);
-  const [changeField, setChangeField] = useState('name');
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [postPerPage, setPostPerPage] = useState(3);
-  // const lastPostIndex = currentPage * postPerPage;
-  // const firstPostIndex = lastPostIndex - postPerPage
-  // const currentPosts = data.slice(firstPostIndex, lastPostIndex);
-  // const totalPost = Math.ceil(data.length/postPerPage);
 
-  // const handleCurrentPageDisplay = (e, p) => {
-  //   setCurrentPage(p);
-  // }
+
+  
+  const [search, setSearch] = useState(dataDisplay);
+  const [changeField, setChangeField] = useState('name');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postPerPage, setPostPerPage] = useState(3);
+  const lastPostIndex = currentPage * postPerPage;
+  const firstPostIndex = lastPostIndex - postPerPage
+  const currentPosts = dataDisplay.slice(firstPostIndex, lastPostIndex);
+  const totalPost = Math.ceil(dataDisplay.length/postPerPage);
+
+  const handleCurrentPageDisplay = (e, p) => {
+    setCurrentPage(p);
+  }
 
   const handleSearch = (e) => {
     const filtername = e.target.value.toLowerCase();
+    console.log(filtername)
+
     if (changeField === 'desg') {
-      const searchedName = data.filter(items => items.designation.toLowerCase().includes(filtername));
+      const searchedName = dataDisplay.filter(items => items.designation.toLowerCase().includes(filtername));
       setSearch(searchedName);
     }
     else if (changeField === 'skill') {
-      const searchedName = data.filter(items => items.field.toLowerCase().includes(filtername));
+      const searchedName = dataDisplay.filter(items => items.field.toLowerCase().includes(filtername));
       setSearch(searchedName);
     }
-    else {
-      const searchedName = data.filter(items => items.name.toLowerCase().includes(filtername));
+    else if (changeField === 'name') {
+      const searchedName = dataDisplay.filter(items => items.name.toLowerCase().includes(filtername));
       setSearch(searchedName);
+    }
+
+    if (filtername.length === 0) {
+      console.log("ANdar")
+      setSearch([])
     }
   }
+
 
   const handleChange = (event) => {
     setChangeField(event.target.value);
@@ -169,7 +178,6 @@ const TeacherSearch = () => {
             marginTop : '20px',
           }}
         >
-
         <Paper sx={{ padding: '5px', borderRadius: '10px', height: '40px'}} elevation={4}>
           <Grid container spacing={1}>
 
@@ -210,19 +218,33 @@ const TeacherSearch = () => {
 
         <Grid container spacing={2} marginTop={1}>
             { 
-                search.map((item, index) => (
-                  <Grid item xs={4} key={index}>
-                    <GridView TeacherFName={item.name} TeacherField={item.field} TeacherDesignation={item.designation} TeacherInfo={limitString(item.descr, 140)} />
-                  </Grid>
-                ))
+                search.length === 0 ? 
+                  (currentPosts.map((item, index) => (
+                    <Grid item xs={4} key={index}>
+                      <GridView TeacherFName={item.name} TeacherField={item.field} TeacherDesignation={item.designation} TeacherInfo={limitString(item.descr, 140)} />
+                    </Grid>
+                  ))
+                  ) : search.length !== 0 ?
+                    (
+                      search.map((item, index) => (
+                        <Grid item xs={4} key={index}>
+                          <GridView TeacherFName={item.name} TeacherField={item.field} TeacherDesignation={item.designation} TeacherInfo={limitString(item.descr, 140)} />
+                        </Grid>
+                      ))
+                      // setSearch([])
+                    ) : null   
             }
         </Grid>
-
-        {/* <Grid container spacing={2} marginTop={1}>
-          <Grid item xs={12} sx={{ display:'flex', justifyContent: 'right'}}>
-            <PageNumber handleCurrentPage={handleCurrentPageDisplay} totalPostCount={totalPost}/>
-          </Grid>
-        </Grid> */}
+        {
+          search.length === 0 && (
+            <Grid container spacing={2} marginTop={1}>
+              <Grid item xs={12} sx={{ display:'flex', justifyContent: 'right'}}>
+                <PageNumber handleCurrentPage={handleCurrentPageDisplay} totalPostCount={totalPost}/>
+              </Grid>
+            </Grid>
+          )
+        }
+        
         
       </Container>
     </Box> 
