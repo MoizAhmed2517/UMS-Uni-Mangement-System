@@ -36,7 +36,7 @@ const PAGES = [
     label: 'Teachers'
   },
   {
-    path: '/student-profile',
+    path: '/Student-search',
     label: 'Students'
   },
   {

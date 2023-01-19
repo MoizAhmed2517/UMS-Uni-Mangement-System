@@ -218,23 +218,24 @@ const TeacherSearch = () => {
 
         <Grid container spacing={2} marginTop={1}>
             { 
-                search.length === 0 ? 
-                  (currentPosts.map((item, index) => (
+              search.length === 0 ? 
+                (currentPosts.map((item, index) => (
+                  <Grid item xs={4} key={index}>
+                    <GridView TeacherFName={item.name} TeacherField={item.field} TeacherDesignation={item.designation} TeacherInfo={limitString(item.descr, 140)} />
+                  </Grid>
+                ))
+                ) : search.length !== 0 ?
+                (
+                  search.map((item, index) => (
                     <Grid item xs={4} key={index}>
                       <GridView TeacherFName={item.name} TeacherField={item.field} TeacherDesignation={item.designation} TeacherInfo={limitString(item.descr, 140)} />
                     </Grid>
                   ))
-                  ) : search.length !== 0 ?
-                    (
-                      search.map((item, index) => (
-                        <Grid item xs={4} key={index}>
-                          <GridView TeacherFName={item.name} TeacherField={item.field} TeacherDesignation={item.designation} TeacherInfo={limitString(item.descr, 140)} />
-                        </Grid>
-                      ))
-                      // setSearch([])
-                    ) : null   
+                  // setSearch([])
+                ) : null   
             }
         </Grid>
+
         {
           search.length === 0 && (
             <Grid container spacing={2} marginTop={1}>
@@ -244,7 +245,6 @@ const TeacherSearch = () => {
             </Grid>
           )
         }
-        
         
       </Container>
     </Box> 

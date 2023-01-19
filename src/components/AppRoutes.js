@@ -22,6 +22,7 @@ const AppRoutes = () => {
         <Route exact path='/' element={<Login/>}/>
         <Route exact path='/Teacher' element={<><Nav /><Teacher /></>}/>
         <Route path='/Teachers-search' element={<><Nav /><TeacherSearch /></>}/>
+        <Route path='/Student-search' element={<><Nav /><StudentSearch /> </>}/>
         <Route path='/student-profile' element={<><Nav /><StudentsProfile /></>}/>
         <Route path='/Recruiter' element={<><Nav /><RecruiterProfile /></>}/>
         <Route path='/AboutUs' element={<><Nav /><AboutUs /></>}/>
